@@ -23,9 +23,16 @@ class LoginController extends Controller
 
         if($validator->passes()){
             if(Auth::attempt(['email'=>$request->email , 'password'=>$request->password])){
-                return redirect()->route('account.dashboard'); 
-            }
-            else{
+                
+                if(Auth::user()->role == 'user'){
+                    return redirect()->route('account.dashboard'); 
+                }
+                else{
+                    Auth::logout();
+                    return redirect()->route('account.login')->with('error','You are not authorized to login');
+                }  
+               
+            } else {
                 return redirect()->route('account.login')->with('error','Your Email or Password is incorrect');
             }
 
