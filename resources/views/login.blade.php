@@ -11,19 +11,18 @@
             <div class="container">
                 <div class="row justify-content-center">
                     
-                    @if(session::has('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ Session::get('success') }}
-                    </div>
-                    @endif
-
-                    @if (Session::has('error'))
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        {{ Session::get('error') }}
-                    </div>
-                        
-                    @endif
                     <div class="col-12 col-md-9 col-lg-7 col-xl-6 col-xxl-5">
+                        @if(Session::has('success'))
+                        <div class="alert alert-success alert-dismissible " role="alert">
+                            {{ Session::get('success') }}
+                        </div>
+                        @endif
+    
+                        @if (Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            {{ Session::get('error') }}
+                        </div>
+                        @endif
                         <div class="card border border-light-subtle rounded-4">
                             <div class="card-body p-3 p-md-4 p-xl-5">
                                 <div class="row">

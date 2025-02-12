@@ -23,10 +23,10 @@ class LoginController extends Controller
 
         if($validator->passes()){
             if(Auth::attempt(['email'=>$request->email , 'password'=>$request->password])){
-
+                return redirect()->route('account.dashboard'); 
             }
             else{
-                return redirect()->route('account.login')->with('Your Email or Password is incorrect');
+                return redirect()->route('account.login')->with('error','Your Email or Password is incorrect');
             }
 
         }
@@ -55,7 +55,8 @@ class LoginController extends Controller
            $user->password = Hash::make($request->password); //encrypt our password
            $user->role = 'user';
            $user->save();
-           return redirect()->route('account.login')->with('You have been registered successfully');
+           return redirect()->route('account.login')->with('success', 'You have been registered successfully');
+
 
 
         }
@@ -65,5 +66,11 @@ class LoginController extends Controller
 
 
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('account.login');
+    }
+
 
 }
