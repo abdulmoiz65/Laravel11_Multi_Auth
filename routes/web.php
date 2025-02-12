@@ -8,9 +8,8 @@ use App\Http\Controllers\admin\DashboardController as AdminDashboardController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('account.login');
 });
-
 
 Route::group(['prefix' => 'account'], function () {
    
